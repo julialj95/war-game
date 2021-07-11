@@ -17,7 +17,7 @@ function drawCards() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data.cards);
-      cardDiv.innerHTML = `<img src=${data.cards[0].image} /><br><img src=${data.cards[1].image} />`;
+      cardDiv.innerHTML = `<img src=${data.cards[0].image} class="card" /><br><img src=${data.cards[1].image} class="card" />`;
     })
     .catch((error) => console.log(error));
 }

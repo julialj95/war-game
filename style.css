@@ -2,11 +2,21 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: green;
+}
+html {
+  background-image: url("card-table-green.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .hidden {
   visibility: hidden;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #new-deck {
@@ -21,6 +31,7 @@ body {
   cursor: pointer;
   font-size: 14px;
 }
+
 #draw-cards {
   position: fixed;
   padding: 10px;
@@ -33,19 +44,15 @@ body {
   background-color: yellow;
   cursor: pointer;
 }
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
 
 #cards {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 75px;
 }
 
-img {
+.card {
   max-width: 35%;
   flex: 1;
 }
