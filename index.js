@@ -18,10 +18,7 @@ function drawCards() {
   fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data.cards);
-      console.log(data.cards[0].value);
       const cardValues = [data.cards[0].value, data.cards[1].value];
-      console.log(cardValues);
       findWinner(cardValues);
       cardDiv.innerHTML = `<img src=${data.cards[0].image} class="card" /><br><img src=${data.cards[1].image} class="card" />`;
     })
@@ -36,22 +33,15 @@ function findWinner(cardValues) {
   let numericCardArray = [];
 
   if (cardValues[0] === cardValues[1]) {
-    myScore = myScore + 1;
-    computerScore = computerScore + 1;
     console.log("cards match!");
-    return;
-  } else if (cardValues[0] < 11 && typeof cardValues[1] === String) {
-    myScore = myScore + 1;
-    console.log(myScore);
-    console.log("You win this hand!");
-  } else if (cardValues[1] < 11 && typeof cardValues[0] === String) {
-    computerScore = computerScore + 1;
-    console.log(computerScore);
-    console.log("Computer wins this hand");
-  } else if (
-    typeof cardValues[0] === String &&
-    typeof cardValues[1] !== Number
-  ) {
+  } else if (Number(cardValues[0]) < 11 && !Number(cardValues[1])) {
+    myScore += 1;
+    console.log("first else if block. You win this hand!");
+  } else if (Number(cardValues[1]) < 11 && !Number(cardValues[0])) {
+    computerScore += 1;
+    console.log("Else if block 2. Computer wins this hand");
+  } else if (!Number(cardValues[0]) && !Number(cardValues[1])) {
+    console.log("entered third else if block");
     for (card of cardValues) {
       switch (card) {
         case "JACK":
@@ -69,23 +59,22 @@ function findWinner(cardValues) {
       }
     }
     if (numericCardArray[0] < numericCardArray[1]) {
+      console.log("numericArray", numericCardArray);
       myScore += 1;
-      console.log(myScore);
-      console.log("You win this round");
+      console.log("First if after switch block. You win this round");
     } else {
-      computerScore = computerScore + 1;
-      console.log(computerScore);
-      console.log("Computer wins this round");
+      console.log("numericArray", numericCardArray);
+      computerScore += 1;
+      console.log("first else after switch block. Computer wins this round");
     }
   } else {
-    if (cardValues[0] < cardValues[1]) {
+    if (Number(cardValues[0]) < Number(cardValues[1])) {
+      console.log(cardValues[0], cardValues[1]);
       myScore = myScore + 1;
-      console.log(myScore);
-      console.log("You win this round");
+      console.log("if inside of last else block. You win this round");
     } else {
       computerScore = computerScore + 1;
-      console.log(computerScore);
-      console.log("Computer wins this round");
+      console.log("else inside of last else block. Computer wins this round");
     }
   }
 
