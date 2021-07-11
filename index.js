@@ -25,10 +25,6 @@ function drawCards() {
     .catch((error) => console.log(error));
 }
 
-function displayScore() {
-  console.log("computer score", computerScore, "my score", myScore);
-}
-
 function findWinner(cardValues) {
   let numericCardArray = [];
 
@@ -79,6 +75,21 @@ function findWinner(cardValues) {
   }
 
   displayScore();
+  endGame();
+}
+
+function displayScore() {
+  console.log("computer score", computerScore, "my score", myScore);
+}
+
+function endGame() {
+  if (myScore >= 14) {
+    console.log("You win the game!");
+    return;
+  } else if (computerScore >= 14) {
+    console.log("Computer won the game");
+    return;
+  }
 }
 
 document.getElementById("new-deck").addEventListener("click", getDeck);
