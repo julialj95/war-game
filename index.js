@@ -12,7 +12,12 @@ function getDeck() {
       computerScore = 0;
       myScore = 0;
       deckId = data.deck_id;
-      cardButton.classList.toggle("hidden");
+      if (cardButton.classList.contains("hidden")) {
+        cardButton.classList.toggle("hidden");
+      }
+      if (!overlay.classList.contains("hidden")) {
+        overlay.classList.toggle("hidden");
+      }
       displayScore();
     })
     .catch((error) => console.log(error));
