@@ -3,6 +3,9 @@ body {
   margin: 0;
   padding: 0;
 }
+body {
+  position: relative;
+}
 html {
   background-image: url("card-table-green.jpg");
   background-repeat: no-repeat;
@@ -49,10 +52,35 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 75px;
+  /* margin-bottom: 75px; */
 }
 
 .card {
   max-width: 25%;
   flex: 1;
+}
+
+#overlay {
+  z-index: 1;
+  position: fixed;
+  top: 50%;
+  left: 39%;
+  width: 300px;
+  height: 100px;
+  background-color: yellow;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 24px;
+  color: blue;
+}
+
+#computer-score,
+#player-score {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+}
+
+#player-score {
+  margin-bottom: 75px;
 }

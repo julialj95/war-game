@@ -1,6 +1,7 @@
 let deckId;
 let cardButton = document.getElementById("draw-cards");
 let cardDiv = document.getElementById("cards");
+let overlay = document.getElementById("overlay");
 let computerScore = 0;
 let myScore = 0;
 
@@ -8,8 +9,11 @@ function getDeck() {
   fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
     .then((res) => res.json())
     .then((data) => {
+      computerScore = 0;
+      myScore = 0;
       deckId = data.deck_id;
       cardButton.classList.toggle("hidden");
+      displayScore();
     })
     .catch((error) => console.log(error));
 }
@@ -68,15 +72,26 @@ function findWinner(cardValues) {
 }
 
 function displayScore() {
+  document.getElementById(
+    "computer-score"
+  ).innerText = `Computer: ${computerScore}`;
+  document.getElementById("player-score").innerText = `Me: ${myScore}`;
   console.log("computer score", computerScore, "my score", myScore);
 }
 
 function endGame() {
-  if (myScore >= 14) {
+  if (myScore >= 5) {
     console.log("You win the game!");
+    cardButton.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+    overlay.innerHTML = `Congratulations! You won!`;
     return;
-  } else if (computerScore >= 14) {
+  } else if (computerScore >= 5) {
+    cardButton.classList.toggle("hidden");
+    overlay.classList.toggle("hidden");
+    overlay.innerHTML = `Computer won this round. Better luck next time!`;
     console.log("Computer won the game");
+
     return;
   }
 }
