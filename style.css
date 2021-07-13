@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 html,
 body {
   margin: 0;
@@ -5,6 +7,7 @@ body {
 }
 body {
   position: relative;
+  font-family: "Press Start 2P", cursive;
 }
 html {
   background-image: url("card-table-green.jpg");
@@ -27,7 +30,7 @@ html {
   padding: 10px;
   width: 100px;
   background-color: yellow;
-  border: solid 4px purple;
+  border: none;
   border-radius: 10px;
   color: blue;
   font-weight: bold;
@@ -52,7 +55,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-bottom: 75px; */
 }
 
 .card {
@@ -63,15 +65,17 @@ html {
 #overlay {
   z-index: 1;
   position: fixed;
-  top: 50%;
-  left: 39%;
-  width: 300px;
-  height: 100px;
+  top: 40%;
+  left: 35%;
+  width: 400px;
+  height: 200px;
   background-color: yellow;
   border-radius: 10px;
   text-align: center;
   font-size: 24px;
   color: blue;
+  padding: 10px;
+  line-height: 30px;
 }
 
 #computer-score,

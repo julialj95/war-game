@@ -2,6 +2,8 @@ let deckId;
 let cardButton = document.getElementById("draw-cards");
 let cardDiv = document.getElementById("cards");
 let overlay = document.getElementById("overlay");
+let playerScoreText = document.getElementById("player-score");
+let computerScoreText = document.getElementById("computer-score");
 let computerScore = 0;
 let myScore = 0;
 
@@ -12,13 +14,15 @@ function getDeck() {
       computerScore = 0;
       myScore = 0;
       deckId = data.deck_id;
+      cardDiv.innerHTML = ``;
       if (cardButton.classList.contains("hidden")) {
         cardButton.classList.toggle("hidden");
       }
       if (!overlay.classList.contains("hidden")) {
         overlay.classList.toggle("hidden");
       }
-      displayScore();
+      playerScoreText.innerHTML = ``;
+      computerScoreText.innerText = ``;
     })
     .catch((error) => console.log(error));
 }
@@ -27,6 +31,7 @@ function drawCards() {
   fetch(`https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
     .then((res) => res.json())
     .then((data) => {
+      displayScore();
       const cardValues = [data.cards[0].value, data.cards[1].value];
       findWinner(cardValues);
       cardDiv.innerHTML = `<img src=${data.cards[0].image} class="card" /><br><img src=${data.cards[1].image} class="card" />`;
@@ -77,25 +82,20 @@ function findWinner(cardValues) {
 }
 
 function displayScore() {
-  document.getElementById(
-    "computer-score"
-  ).innerText = `Computer: ${computerScore}`;
-  document.getElementById("player-score").innerText = `Me: ${myScore}`;
-  console.log("computer score", computerScore, "my score", myScore);
+  computerScoreText.innerText = `Computer: ${computerScore}`;
+  playerScoreText.innerText = `Me: ${myScore}`;
 }
 
 function endGame() {
-  if (myScore >= 5) {
-    console.log("You win the game!");
+  if (myScore >= 14) {
     cardButton.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
-    overlay.innerHTML = `Congratulations! You won!`;
+    overlay.innerHTML = `Congratulations! You won! Click 'New Deck' to play again.`;
     return;
-  } else if (computerScore >= 5) {
+  } else if (computerScore >= 14) {
     cardButton.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
-    overlay.innerHTML = `Computer won this round. Better luck next time!`;
-    console.log("Computer won the game");
+    overlay.innerHTML = `Computer won this round. Better luck next time! Click 'New Deck' to play again.`;
 
     return;
   }
