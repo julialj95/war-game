@@ -90,12 +90,12 @@ function endGame() {
   if (myScore >= 13) {
     cardButton.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
-    overlay.innerHTML = `Congratulations! You won! Click 'New Deck' to play again.`;
+    overlay.innerHTML = `Congratulations! You won!<br /> Click 'New Deck' to play again.`;
     return;
   } else if (computerScore >= 13) {
     cardButton.classList.toggle("hidden");
     overlay.classList.toggle("hidden");
-    overlay.innerHTML = `Computer won this round. Better luck next time! Click 'New Deck' to play again.`;
+    overlay.innerHTML = `Computer won this round. Better luck next time! <br /> Click 'New Deck' to play again.`;
 
     return;
   }
